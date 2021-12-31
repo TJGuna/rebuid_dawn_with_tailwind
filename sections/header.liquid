@@ -1,0 +1,65 @@
+<div class="flex p-5  text-[{{ section.settings.text_color }}] justify-between items-center bg-[{{section.settings.bg_color}}] rounded">
+  <div class="flex items-center space-x-2">
+    <img  src="{{ section.settings.logo | img_url: image_size }}" 
+          class= "h-[{{section.settings.height}}px] w-[{{section.settings.width}}px]"
+          loading="lazy" 
+          alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+          >
+    <a class="text-3xl">{{shop.name}}</a>
+  </div>
+  <div class="flex space-x-4">
+    {% for link in linklists.main-menu.links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+    <div class="relative">
+      <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
+      <span class="absolute bg-green-700  text-sm rounded-full p-0.5  -right-2 -top-3">{{ cart.item_count }}</span>
+     </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "logo",
+    "label": "Logo image"
+  },
+  {
+    "type": "color",
+    "id": "bg_color",
+    "label": "Background color",
+    "default": "#7C7776"
+  },
+  {
+    "type": "range",
+    "id": "height",
+    "min": 30,
+    "max": 130,
+    "step": 1,
+    "unit": "px",
+    "label": "height of navigation bar",
+    "default": 40
+  },
+  {
+    "type": "range",
+    "id": "width",
+    "min": 30,
+    "max": 130,
+    "step": 1,
+    "unit": "px",
+    "label": "width of navigation bar",
+    "default": 40
+  },
+  {
+    "type": "color",
+    "id": "text_color",
+    "label": "text color",
+    "default": "#ffffff"
+  },
+
+  ]
+}
+{% endschema %}
